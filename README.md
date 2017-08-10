@@ -1,6 +1,6 @@
 # What is this project for?
 
-It's a really quick start for **LOCAL** development of ReactJS (with SSR) + Drupal 8 applications.
+It's a really quick start for **LOCAL** development of ReactJS (with Server Side Rendering) + Drupal 8 applications.
 
 As the result of configuration, you'll get:
 - Working and ready for development ReactJS application
@@ -10,8 +10,8 @@ As the result of configuration, you'll get:
 
 # Advantages of this project
 
-- You don't need to have `composer` on `npm` installed locally. Everything is being done though Docker containers.
-- You don't depend on versions of `composer` or `npm` installed at dev environments of your team members.
+- You don't need to have `composer`, `npm` or `yarn` installed locally. Everything is being done though Docker containers.
+- You don't depend on versions of `composer`, `npm` or `yarn` installed at dev environments of your team members.
 - Docker configuration for Drupal is based on [docker4drupal](http://docker4drupal.org) containers. It provides very good flexibility for Docker-based local development. If you need more containers (i.e. for `memcached`, `redis`, `solr`, etc) - just check out what they offer.
 - Drupal configuration is based on [drupal-composer/drupal-project](https://github.com/drupal-composer/drupal-project) project which provides best dev experience in working with Drupal through `composer`.
 - ReactJS application created based on [Next.js 2](https://zeit.co/blog/next2).
@@ -53,21 +53,28 @@ At the end of configuration journey you'll get the following hosts available:
 
     You DON'T need to have `npm` or `yarn` installed locally.
 
-3. Version of Drupal core and modules may be outdated at the moment when you clone this repo. 
+3. Version of Drupal core and modules may be outdated by the time you clone this repo.
    So execute the following command to bring the core and modules up to date:
 
     ```
-    docker-compose run php composer update
+    docker-compose run php composer update --with-dependencies --verbose
     ```
 
     Drupal was initialized based on [Drupal Project](https://github.com/drupal-composer/drupal-project).
     Check it out for development guideline.
 
     You DON'T need to have `composer` installed locally.
+    
+4. Version of npm packages may be outdated by the time you clone this repo.
+   You should bring them all up to date with this command:
+   
+   ```
+   docker-compose run node yarn upgrade
+   ```
 
-4. It's all done now! You may try accessing any host listed in the `Hosts` section of this manual. 
+5. It's all done now! You may try accessing any host listed in the `Hosts` section of this manual. 
 
-5. As the final step you'd probably want to commit everything to your own repository.
+6. As the final step you'd probably want to commit everything to your own repository.
     Feel free to drop `.git` folder in the project root and initialize it with your git settings. 
 
     As soon as this is done it's safe to run `git add -A` and commit everything what's been added.
@@ -75,23 +82,23 @@ At the end of configuration journey you'll get the following hosts available:
 
 ## CLI to work with ReactJS application
 
-To access all `yarn` commands you can simply run shell inside of `frontend` Docker container:
+To access all `npm` and `yarn` commands you can simply run shell inside of `node` Docker container:
 
 ```
 docker-compose run node sh
 ```
 
-Then use `npm` CLI as usual. For example, add a new package:
+Then use `npm` or `yarn` CLI as usual. For example, add a new package:
 
 ```
 yarn add lodash
 ```
 
-All you'll need to commit is the change to `package.json` file.
+All you'll need to commit is the change to `package.json` and `package.json` files.
 
 ## CLI to work with Drupal application
 
-To access all available CLI to manage Drupal, run shell inside of `php` Docker container:
+To access CLI to manage Drupal, run shell inside of `php` Docker container:
 
 ```
 docker-compose run php sh
