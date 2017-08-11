@@ -5,7 +5,7 @@
 The current application is based on [Next.js 2](https://github.com/zeit/next.js). 
 It allows for server side rendeing (SSR) as well as comes with pre-defined development environment.
 
-[This article](https://zeit.co/blog/next2) gives a very good overview and contains many examples of implementations.
+[This](https://zeit.co/blog/next2) and [this](https://zeit.co/blog/next3) articles give a very good overview and contains many examples of implementations.
 
 ## Structure overview
 
